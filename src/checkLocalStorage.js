@@ -14,25 +14,3 @@ export function saveLocalStorage(key, data) {
     console.log(error);
   }
 }
-
-// export function recordLocalStorage(key, data) {
-//   const currentState = getLocalStorage(key);
-
-//   if (!currentState) {
-//     saveLocalStorage(key, [data]);
-//   } else {
-//     currentState.push(data);
-//     saveLocalStorage(key, currentState);
-//   }
-// }
-
-// export function deleteLocalStorage(key, id) {
-//   const currentState = getLocalStorage(key);
-//   if (currentState.length === 1) {
-//     localStorage.removeItem(key);
-//     return;
-//   }
-//   const index = currentState.findIndex(obj => obj.id === id);
-//   currentState.splice(index, 1);
-//   saveLocalStorage(key, currentState);
-// }

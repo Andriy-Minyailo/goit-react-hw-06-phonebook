@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import css from './FormAddContacts.module.css';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'components/redux/conactSlice';
 
-export const FormAddContacts = ({ addContact }) => {
+export const FormAddContacts = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
     number: '',
@@ -15,7 +18,8 @@ export const FormAddContacts = ({ addContact }) => {
 
   const submitAddContact = evt => {
     evt.preventDefault();
-    addContact({ ...state, id: nanoid() });
+    dispatch(addContact(state.name, state.number));
+    // addContact({ ...state, id: nanoid() });
     setState({ name: '', number: '' });
   };
 
@@ -28,7 +32,7 @@ export const FormAddContacts = ({ addContact }) => {
             className={css.input}
             type="text"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             onChange={handleChange}
@@ -41,7 +45,7 @@ export const FormAddContacts = ({ addContact }) => {
             className={css.input}
             type="tel"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // pattern="\+?\d{1,4}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             onChange={handleChange}
@@ -54,6 +58,6 @@ export const FormAddContacts = ({ addContact }) => {
   );
 };
 
-FormAddContacts.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};
+// FormAddContacts.propTypes = {
+//   addContact: PropTypes.func.isRequired,
+// };
